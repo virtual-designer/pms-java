@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<VBox
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.nsu.cse215.labgroup3.pms.controllers.HomeController"
+        spacing="10"
+        styleClass="rootBox"
+        fx:id="rootBox"
+>
+
+</VBox>

@@ -1,0 +1,39 @@
+.homeView {
+    -fx-padding: 50px 80px;
+}
+
+.homeView .topSubHeading {
+    -fx-text-fill: #999;
+    -fx-font-size: 17px;
+}
+
+.homeView .topHeading, .homeView .topSubHeading {
+    -fx-alignment: center;
+    -fx-max-width: 999999999px;
+}
+
+.homeView .optionButtons {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+.homeView .optionButton {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #fff;
+    -fx-font-size: 13px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+    -fx-pref-width: 250px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.homeView .optionButton:hover {
+    -fx-background-color: #0058ad;
+}
+
+.homeView .optionButton:focused {
+    -fx-border-color: #eee;
+}

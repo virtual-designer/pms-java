@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="pms-java" default="build" basedir="." xmlns:if="ant:if">
+    <description>
+        A courier parcel management system (local).
+    </description>
+
+    <property name="src.dir">src</property>
+    <property name="src.modules.main">main</property>
+    <property name="src.classes.dir">${src.dir}/${src.modules.main}/java</property>
+    <property name="src.resources.dir">${src.dir}/${src.modules.main}/resources</property>
+    <property name="build.dir">build</property>
+    <property name="build.classes.dir">${build.dir}/out/classes/java</property>
+    <property name="build.resources.dir">${build.dir}/out/resources</property>
+    <property name="src.mainclass">org.nsu.cse215.labgroup3.pms.Main</property>
+    <property name="src.target.version">17</property>
+    <property name="lib.dir">libjar</property>
+
+    <condition property="is.linux">
+        <os family="unix" />
+    </condition>
+
+    <path id="app.classpath">
+        <file name="${build.classes.dir}" />
+        <file name="${build.resources.dir}" />
+
+        <fileset dir="${lib.dir}/javafx-sdk-gnu-linux" if:set="is.linux">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="copyResources">
+        <mkdir dir="${build.resources.dir}" />
+        <copy todir="${build.resources.dir}">
+            <fileset dir="${src.resources.dir}" />
+        </copy>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.classes.dir}" />
+        <javac
+            release="${src.target.version}"
+            srcdir="${src.classes.dir}"
+            destdir="${build.classes.dir}"
+            includeantruntime="false"
+        >
+            <classpath refid="app.classpath" />
+        </javac>
+    </target>
+
+    <target name="build" depends="compile, copyResources" />
+
+    <target name="run" depends="build">
+        <java
+            classname="${src.mainclass}"
+            fork="true"
+        >
+            <classpath refid="app.classpath" />
+            <jvmarg value="--enable-native-access=ALL-UNNAMED" />
+        </java>
+    </target>
+</project>
