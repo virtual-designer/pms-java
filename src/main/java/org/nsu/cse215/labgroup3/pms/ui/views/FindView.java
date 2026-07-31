@@ -15,7 +15,4 @@ public class FindView extends View {
     protected Parent loadRoot() throws Exception {
         return loadRootFromResourceFXML(VIEW_NAME);
     }
-
-    @Override
-    protected void render() {}
 }

@@ -10,11 +10,14 @@ import java.util.Objects;
 public abstract class View {
     protected final ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     public final Scene scene;
-    public final Parent root;
+    private Parent root;
 
-    public View(Scene scene) throws Exception {
+    public View(Scene scene) {
         this.scene = scene;
-        this.root = loadRoot();
+    }
+
+    public void initialize() throws Exception {
+        root = loadRoot();
     }
 
     protected Parent loadRootFromResourceFXML(String resourceName) throws IOException {
@@ -29,10 +32,9 @@ public abstract class View {
         scene.getStylesheets().add(Objects.requireNonNull(classLoader.getResource(resourceName)).toExternalForm());
     }
 
-    public void invokeRender() {
-        render();
+    public Parent getRoot() {
+        return root;
     }
 
     protected abstract Parent loadRoot() throws Exception;
-    protected abstract void render();
 }

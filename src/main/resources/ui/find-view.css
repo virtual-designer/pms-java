@@ -17,3 +17,13 @@
 .findView .text-field {
     -fx-prompt-text-fill: #777;
 }
+
+.findView .searchField {
+    -fx-padding: 5px 0 5px 38px;
+}
+
+.findView .searchFieldIconWrapper {
+    -fx-padding: 0 0 1px 12px;
+    -fx-max-width: 50px;
+    -fx-alignment: center-left;
+}

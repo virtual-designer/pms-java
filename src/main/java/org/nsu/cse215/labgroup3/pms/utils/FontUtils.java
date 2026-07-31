@@ -14,6 +14,6 @@ public class FontUtils {
     }
 
     public static Font loadDefaultFont() throws IOException {
-        return loadFontFromResource("fonts/InterVariable.ttf");
+        return loadFontFromResource("fonts/GoogleSansVariable.ttf");
     }
 }

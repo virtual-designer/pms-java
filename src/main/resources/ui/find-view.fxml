@@ -7,6 +7,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.layout.StackPane?>
+
 <VBox
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.nsu.cse215.labgroup3.pms.controllers.FindController"
@@ -33,10 +35,19 @@
                 <Insets top="25" />
             </VBox.margin>
 
-            <TextField
-                styleClass="text, textField"
-                promptText="Enter a tracking ID..."
-            />
+            <StackPane alignment="CENTER_LEFT">
+                <TextField
+                    styleClass="text, textField, searchField"
+                    promptText="Enter a tracking ID..."
+                    fx:id="searchField"
+                />
+
+                <VBox styleClass="searchFieldIconWrapper">
+                    <ImageView>
+                        <Image url="@../icons/search.png" requestedHeight="20" requestedWidth="20" preserveRatio="true" smooth="true" />
+                    </ImageView>
+                </VBox>
+            </StackPane>
         </VBox>
     </VBox>
 </VBox>
