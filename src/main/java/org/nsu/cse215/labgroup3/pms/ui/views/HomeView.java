@@ -7,7 +7,7 @@ import org.nsu.cse215.labgroup3.pms.core.ui.View;
 public class HomeView extends View {
     public static final String VIEW_NAME = "home";
 
-    public HomeView(Scene scene) throws Exception {
+    public HomeView(Scene scene) {
         super(scene);
     }
 

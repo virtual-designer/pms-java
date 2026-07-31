@@ -13,7 +13,15 @@ public class FontUtils {
         }
     }
 
-    public static Font loadDefaultFont() throws IOException {
-        return loadFontFromResource("fonts/GoogleSansVariable.ttf");
+    public static Font[] loadDefaultFonts() throws IOException {
+        String[] fontVariations = {"Bold", "BoldItalic", "Italic", "Medium", "MediumItalic", "Regular", "SemiBold", "SemiBoldItalic"};
+        Font[] fonts = new Font[fontVariations.length];
+        int i = 0;
+
+        for (String variation : fontVariations) {
+            fonts[i++] = loadFontFromResource("fonts/GoogleSans-%s.ttf".formatted(variation));
+        }
+
+        return fonts;
     }
 }

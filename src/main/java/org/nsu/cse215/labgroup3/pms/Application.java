@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
@@ -14,7 +15,7 @@ import org.nsu.cse215.labgroup3.pms.ui.views.FindView;
 import org.nsu.cse215.labgroup3.pms.ui.views.HomeView;
 import org.nsu.cse215.labgroup3.pms.utils.FontUtils;
 
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -24,7 +25,7 @@ public class Application extends javafx.application.Application {
 
     private final StackPane stackPane = new StackPane();
     private final VBox rootBox = new VBox(stackPane);
-    private final Scene scene = new Scene(rootBox, 750, 500);
+    private final Scene scene = new Scene(rootBox, 750, 550);
 
     public final View homeScene = new HomeView(scene);
     public final View findScene = new FindView(scene);
@@ -121,8 +122,8 @@ public class Application extends javafx.application.Application {
     }
 
     private void initializeViews() throws Exception {
-        Font font = FontUtils.loadDefaultFont();
-        System.out.println(font.getFamily());
+        FontUtils.loadDefaultFonts();
+
         for (final var view : views) {
             view.initialize();
         }
@@ -135,7 +136,7 @@ public class Application extends javafx.application.Application {
 
         rootBox.getStyleClass().add("rootBox");
         scene.getStylesheets().add(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("ui/global.css")).toExternalForm());
-        stackPane.getChildren().add(homeScene.getRoot());
+        stackPane.getChildren().add(findScene.getRoot());
 
         stage.setScene(scene);
         stage.show();

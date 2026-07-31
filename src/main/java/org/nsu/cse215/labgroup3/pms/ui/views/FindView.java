@@ -7,7 +7,7 @@ import org.nsu.cse215.labgroup3.pms.core.ui.View;
 public class FindView extends View {
     public static final String VIEW_NAME = "find";
 
-    public FindView(Scene scene) throws Exception {
+    public FindView(Scene scene) {
         super(scene);
     }
 

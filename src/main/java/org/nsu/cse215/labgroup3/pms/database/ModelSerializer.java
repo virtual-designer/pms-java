@@ -1,57 +1,96 @@
 package org.nsu.cse215.labgroup3.pms.database;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class ModelSerializer {
-    public void serialize(Object object, Element element) {
+    private final Map<Class<? extends XMLDataSerializer<?>>, XMLDataSerializer<?>> serializerCache = new HashMap<>();
+
+    @SuppressWarnings("unchecked")
+    public Element serialize(Object object, Document document) {
         Class<?> clazz = object.getClass();
 
         if (!clazz.isAnnotationPresent(Model.class)) {
-            throw new IllegalStateException("Cannot serialize object of %s class".formatted(clazz.getName()));
+            throw new IllegalArgumentException("Cannot serialize object of %s class".formatted(clazz.getName()));
         }
 
-        for (Field field : clazz.getDeclaredFields()) {
-            String name = getFieldName(field);
+        Model modelAnnotation = getModelAnnotation(clazz);
+        String tagName = getModelTagName(clazz, modelAnnotation);
+        Element element = document.createElement(tagName);
 
-            if (name == null) {
+        for (Field field : clazz.getDeclaredFields()) {
+            org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation = getFieldAnnotation(field);
+
+            if (fieldAnnotation == null) {
                 continue;
             }
 
+            String name = getFieldName(field, fieldAnnotation);
+            XMLDataSerializer<?> serializer = getFieldSerializer(field, fieldAnnotation);
+
             try {
-                element.setAttribute(name, field.get(object).toString());
+                field.setAccessible(true);
+                Object rawValue = field.get(object);
+                element.setAttribute(name, serializer != null ? ((XMLDataSerializer<Object>) serializer).encode(rawValue) : rawValue.toString());
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
+
+        return element;
     }
 
-    public <T> T deserialize(Class<T> clazz, Node userNode) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        NamedNodeMap attributes = userNode.getAttributes();
-        T object = clazz.getConstructor().newInstance();
+    public <T> T deserialize(Class<T> clazz, Node userNode) {
+        T object;
 
-        if (!clazz.isAnnotationPresent(Model.class)) {
-            throw new IllegalStateException("Cannot serialize object of %s class".formatted(clazz.getName()));
+        try {
+            object = clazz.getConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
-        for (Field field : clazz.getDeclaredFields()) {
-            String name = getFieldName(field);
+        if (!clazz.isAnnotationPresent(Model.class)) {
+            throw new IllegalArgumentException("Cannot deserialize object of %s class".formatted(clazz.getName()));
+        }
 
-            if (name == null) {
+        Model modelAnnotation = getModelAnnotation(clazz);
+        String tagName = getModelTagName(clazz, modelAnnotation);
+
+        if (!userNode.getNodeName().equals(tagName)) {
+            throw new IllegalArgumentException("Invalid tag name: %s".formatted(userNode.getNodeName()));
+        }
+
+        NamedNodeMap attributes = userNode.getAttributes();
+
+        for (Field field : clazz.getDeclaredFields()) {
+            org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation = getFieldAnnotation(field);
+
+            if (fieldAnnotation == null) {
                 continue;
             }
+
+            String name = getFieldName(field, fieldAnnotation);
+            XMLDataSerializer<?> serializer = getFieldSerializer(field, fieldAnnotation);
+
+            field.setAccessible(true);
 
             String valueString = attributes.getNamedItem(name).getTextContent();
             Object value;
             Type type = field.getType();
 
-            if (type == Integer.class) {
+            if (serializer != null) {
+                value = serializer.decode(valueString);
+            }
+            else if (type == Integer.class) {
                 value = Integer.valueOf(valueString);
             }
             else if (type == Long.class) {
@@ -66,32 +105,67 @@ public class ModelSerializer {
             else if (type == Boolean.class) {
                 value = Boolean.valueOf(valueString);
             }
-            else if (type == Instant.class) {
-                value = Instant.parse(valueString);
-            }
             else {
                 value = valueString;
             }
 
-            field.set(object, value);
+            try {
+                field.set(object, value);
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
 
         return object;
     }
 
-    private String getFieldName(Field field) {
+    private String getModelTagName(Class<?> clazz, Model modelAnnotation) {
+        return modelAnnotation.tagName().isEmpty() ? clazz.getSimpleName().toLowerCase() : modelAnnotation.tagName();
+    }
+
+    private Model getModelAnnotation(Class<?> clazz) {
+        return Objects.requireNonNull(clazz.getAnnotation(org.nsu.cse215.labgroup3.pms.database.Model.class));
+    }
+
+    private org.nsu.cse215.labgroup3.pms.database.Field getFieldAnnotation(Field field) {
         if (!field.isAnnotationPresent(org.nsu.cse215.labgroup3.pms.database.Field.class)) {
             return null;
         }
 
-        final var fieldAnnotation = field.getAnnotation(org.nsu.cse215.labgroup3.pms.database.Field.class);
+        return field.getAnnotation(org.nsu.cse215.labgroup3.pms.database.Field.class);
+    }
+
+    private String getFieldName(Field field, org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation) {
         String name = fieldAnnotation.name();
 
         if (name.isEmpty()) {
             name = field.getName();
         }
 
-        field.setAccessible(true);
         return name;
+    }
+
+    @SuppressWarnings("unchecked")
+    private XMLDataSerializer<?> getFieldSerializer(Field field, org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation) {
+        final var serializerClass = fieldAnnotation.serializer();
+
+        if (serializerClass == XMLDataSerializer.class) {
+            return null;
+        }
+
+        final var cachedObject = serializerCache.getOrDefault(serializerClass, null);
+
+        if (cachedObject != null) {
+            return cachedObject;
+        }
+
+        try {
+            final var serializer = serializerClass.getConstructor().newInstance();
+            serializerCache.put((Class<? extends XMLDataSerializer<?>>) serializerClass, serializer);
+            return serializer;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -2,10 +2,11 @@ package org.nsu.cse215.labgroup3.pms.database.models;
 
 import org.nsu.cse215.labgroup3.pms.database.Field;
 import org.nsu.cse215.labgroup3.pms.database.Model;
+import org.nsu.cse215.labgroup3.pms.database.serializers.InstantSerializer;
 
 import java.time.Instant;
 
-@Model
+@Model(tagName = "user")
 public class User {
     @Field
     private Long id;
@@ -16,7 +17,7 @@ public class User {
     @Field
     private String username;
 
-    @Field
+    @Field(serializer = InstantSerializer.class)
     private Instant createdAt;
 
     public User() {}
@@ -32,9 +33,8 @@ public class User {
         return id;
     }
 
-    public User setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
