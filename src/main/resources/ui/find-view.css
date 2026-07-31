@@ -6,6 +6,10 @@
     -fx-padding: 30px 60px;
 }
 
+.findView .backIconWrapper {
+    -fx-padding: 10px;
+}
+
 .findView .backIconWrapper:hover {
     -fx-opacity: 0.5;
 }

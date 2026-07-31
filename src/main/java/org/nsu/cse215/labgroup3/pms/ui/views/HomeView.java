@@ -1,15 +1,14 @@
-package org.nsu.cse215.labgroup3.pms.ui.scenes;
+package org.nsu.cse215.labgroup3.pms.ui.views;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 
-public class HomeScene extends View {
+public class HomeView extends View {
     public static final String VIEW_NAME = "home";
 
-    public HomeScene(Scene scene) throws Exception {
+    public HomeView(Scene scene) throws Exception {
         super(scene);
-        loadCSSFromResource(VIEW_NAME);
     }
 
     @Override

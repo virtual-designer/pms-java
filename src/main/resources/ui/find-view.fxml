@@ -11,6 +11,7 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.nsu.cse215.labgroup3.pms.controllers.FindController"
     spacing="10"
+    stylesheets="@find-view.css"
     styleClass="findView"
 >
     <VBox fx:id="backIconWrapper" onMouseClicked="#onBackIconWrapperClick" styleClass="backIconWrapper" maxWidth="36" maxHeight="36">

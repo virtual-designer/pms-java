@@ -9,6 +9,7 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.nsu.cse215.labgroup3.pms.controllers.HomeController"
     spacing="10"
+    stylesheets="@home-view.css"
     styleClass="homeView"
 >
     <Label
