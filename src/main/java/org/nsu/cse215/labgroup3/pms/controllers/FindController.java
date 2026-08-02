@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import org.nsu.cse215.labgroup3.pms.Application;
@@ -20,12 +19,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class FindController {
+    private final Application application = Application.getInstance();
+
     private final PauseTransition transition = new PauseTransition(Duration.millis(250));
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("");
     private String searchQuery = "";
-
-    @FXML
-    public VBox backIconWrapper;
 
     @FXML
     public TextField searchField;
@@ -67,12 +65,6 @@ public class FindController {
     public Label searchResultParcelETA;
 
     @FXML
-    public void onBackIconWrapperClick(MouseEvent event) {
-        Application application = Application.getInstance();
-        application.popView();
-    }
-
-    @FXML
     public void onSearchFieldKeyReleased(KeyEvent keyEvent) {
         if (searchQuery.equals(searchField.textProperty().get())) {
             return;
@@ -96,7 +88,6 @@ public class FindController {
         String query = searchField.textProperty().get();
 
         System.out.println("Searching now: " + query);
-        Application application = Application.getInstance();
         Optional<Parcel> result = application.database.getParcel(query);
 
         Platform.runLater(() -> {

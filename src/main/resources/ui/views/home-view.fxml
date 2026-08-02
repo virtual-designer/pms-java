@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.HomeController"
+    spacing="10"
+    stylesheets="@home-view.css"
+    styleClass="homeView"
+>
+    <Label
+        text="Courier Management System"
+        styleClass="text, topHeading"
+    />
+
+    <Label
+        text="What would you like to do?"
+        styleClass="text, topSubHeading"
+    />
+
+    <VBox styleClass="optionButtons">
+        <VBox.margin>
+            <Insets bottom="50" top="100" />
+        </VBox.margin>
+
+        <Button styleClass="optionButton" fx:id="addParcelButton" onAction="#onAddParcelButtonClick">
+            Add new parcel
+        </Button>
+
+        <Button styleClass="optionButton" fx:id="findParcelButton" onAction="#onFindParcelButtonClick">
+            Find a parcel
+        </Button>
+
+        <Button styleClass="optionButton" fx:id="updateParcelButton" onAction="#onUpdateParcelButtonClick">
+            Update parcel details
+        </Button>
+    </VBox>
+
+
+    <VBox styleClass="footer">
+        <VBox.margin>
+            <Insets bottom="50" top="25" />
+        </VBox.margin>
+
+        <Label styleClass="footerLabel">Copyright (C) CSE215L.2 Lab Group 3 (Summer 2026)</Label>
+        <HBox alignment="center">
+            <Label styleClass="footerLabel">This is free software under the </Label><Hyperlink fx:id="licenseLink" onAction="#onLicenseLinkClick" styleClass="licenseLink">GPLv3.0+</Hyperlink><Label styleClass="footerLabel">license.</Label>
+        </HBox>
+    </VBox>
+</VBox>

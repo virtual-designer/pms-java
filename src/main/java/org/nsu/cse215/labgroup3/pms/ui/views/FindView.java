@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 
 public class FindView extends View {
-    public static final String VIEW_NAME = "find";
+    public static final String VIEW_NAME = "views/find-view";
 
     public FindView(Scene scene) {
         super(scene);

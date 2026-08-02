@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.TextField?>
-
-<?import javafx.scene.layout.StackPane?>
-
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.shape.Box?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
+
 <VBox
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.nsu.cse215.labgroup3.pms.controllers.FindController"
@@ -23,11 +14,7 @@
     stylesheets="@find-view.css"
     styleClass="findView"
 >
-    <VBox fx:id="backIconWrapper" onMouseClicked="#onBackIconWrapperClick" styleClass="backIconWrapper" maxWidth="36" maxHeight="36">
-        <ImageView>
-            <Image url="@../icons/chevron-left.png" requestedHeight="24" requestedWidth="24" preserveRatio="true" smooth="true" />
-        </ImageView>
-    </VBox>
+    <fx:include source="../components/back-button.fxml" />
 
     <VBox
         styleClass="innerRootBox"
@@ -52,7 +39,7 @@
 
                 <VBox styleClass="searchFieldIconWrapper">
                     <ImageView>
-                        <Image url="@../icons/search.png" requestedHeight="20" requestedWidth="20" preserveRatio="true" smooth="true" />
+                        <Image url="@../../icons/search.png" requestedHeight="20" requestedWidth="20" preserveRatio="true" smooth="true" />
                     </ImageView>
                 </VBox>
             </StackPane>

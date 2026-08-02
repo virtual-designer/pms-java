@@ -1,0 +1,7 @@
+.backIconWrapper {
+    -fx-padding: 10px;
+}
+
+.backIconWrapper:hover {
+    -fx-opacity: 0.5;
+}

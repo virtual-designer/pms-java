@@ -5,32 +5,35 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 import org.nsu.cse215.labgroup3.pms.database.Database;
+import org.nsu.cse215.labgroup3.pms.ui.views.AddView;
 import org.nsu.cse215.labgroup3.pms.ui.views.FindView;
 import org.nsu.cse215.labgroup3.pms.ui.views.HomeView;
+import org.nsu.cse215.labgroup3.pms.ui.views.UpdateView;
 import org.nsu.cse215.labgroup3.pms.utils.FontUtils;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Application extends javafx.application.Application {
+    private static final String STAGE_TITLE = "Courier Management System";
+
     public final Database database = new Database();
 
     private final StackPane stackPane = new StackPane();
     private final VBox rootBox = new VBox(stackPane);
     private final Scene scene = new Scene(rootBox, 750, 550);
 
-    public final View homeScene = new HomeView(scene);
-    public final View findScene = new FindView(scene);
+    public final View homeView = new HomeView(scene);
+    public final View findView = new FindView(scene);
+    public final View addView = new AddView(scene);
+    public final View updateView = new UpdateView(scene);
 
-    public final List<View> views = List.of(homeScene, findScene);
+    public final List<View> views = List.of(homeView, findView, addView, updateView);
 
     private static Application instance;
 
@@ -132,11 +135,11 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws Exception {
         initializeViews();
-        stage.setTitle("Courier Management Service");
+        stage.setTitle(STAGE_TITLE);
 
         rootBox.getStyleClass().add("rootBox");
         scene.getStylesheets().add(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("ui/global.css")).toExternalForm());
-        stackPane.getChildren().add(homeScene.getRoot());
+        stackPane.getChildren().add(homeView.getRoot());
 
         stage.setScene(scene);
         stage.show();

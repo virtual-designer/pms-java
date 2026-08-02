@@ -64,4 +64,8 @@
             <jvmarg value="--enable-native-access=ALL-UNNAMED" />
         </java>
     </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
 </project>

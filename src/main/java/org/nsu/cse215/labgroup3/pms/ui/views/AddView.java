@@ -4,10 +4,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 
-public class HomeView extends View {
-    public static final String VIEW_NAME = "views/home-view";
+public class AddView extends View {
+    public static final String VIEW_NAME = "views/add-view";
 
-    public HomeView(Scene scene) {
+    public AddView(Scene scene) {
         super(scene);
     }
 

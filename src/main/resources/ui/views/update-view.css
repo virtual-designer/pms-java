@@ -1,0 +1,7 @@
+.rootBox {
+    -fx-padding: 10px;
+}
+
+.innerRootBox {
+    -fx-padding: 30px 60px;
+}

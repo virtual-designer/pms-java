@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:id="backIconWrapper"
+    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.BackButtonController"
+    onMouseClicked="#onBackIconWrapperClick"
+    styleClass="backIconWrapper"
+    maxWidth="36"
+    maxHeight="36"
+    stylesheets="@back-button.css"
+>
+    <ImageView>
+        <Image url="@../../icons/chevron-left.png" requestedHeight="24" requestedWidth="24" preserveRatio="true" smooth="true" />
+    </ImageView>
+</VBox>

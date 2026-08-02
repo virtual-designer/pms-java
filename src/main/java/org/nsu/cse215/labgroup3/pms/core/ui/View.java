@@ -21,11 +21,11 @@ public abstract class View {
     }
 
     protected Parent loadRootFromResourceFXML(String resourceName) throws IOException {
-        return new FXMLLoader(classLoader.getResource("ui/%s-view.fxml".formatted(resourceName))).load();
+        return new FXMLLoader(classLoader.getResource("ui/%s.fxml".formatted(resourceName))).load();
     }
 
     protected void loadCSSFromResource(String resourceName) {
-        loadCSSFromResourceRawName("ui/%s-view.css".formatted(resourceName));
+        loadCSSFromResourceRawName("ui/%s.css".formatted(resourceName));
     }
 
     private void loadCSSFromResourceRawName(String resourceName) {

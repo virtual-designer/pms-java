@@ -37,3 +37,20 @@
 .homeView .optionButton:focused {
     -fx-border-color: #eee;
 }
+
+.footer .footerLabel {
+    -fx-text-fill: #777;
+}
+
+.footer {
+    -fx-alignment: center;
+}
+
+.licenseLink, .licenseLink:visited {
+    -fx-text-fill: #007bff;
+}
+
+.licenseLink:focused,
+.licenseLink:hover {
+    -fx-text-fill: #0058ad;
+}

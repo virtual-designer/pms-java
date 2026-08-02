@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<VBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.AddController"
+    spacing="10"
+    stylesheets="@add-view.css"
+>
+    <fx:include source="../components/back-button.fxml" />
+
+    <VBox
+        styleClass="innerRootBox"
+    >
+        <Label
+            text="Add a parcel"
+            styleClass="text, topHeading"
+        />
+
+        <VBox>
+            <VBox.margin>
+                <Insets top="25" />
+            </VBox.margin>
+        </VBox>
+    </VBox>
+</VBox>
