@@ -16,14 +16,20 @@
     <property name="lib.dir">libjar</property>
 
     <condition property="is.linux">
-        <os family="unix" />
+        <os family="unix" name="Linux" />
+    </condition>
+
+    <condition property="is.darwin">
+        <os family="mac" />
     </condition>
 
     <path id="app.classpath">
         <file name="${build.classes.dir}" />
         <file name="${build.resources.dir}" />
-
         <fileset dir="${lib.dir}/javafx-sdk-gnu-linux" if:set="is.linux">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}/javafx-sdk-darwin" if:set="is.darwin">
             <include name="**/*.jar"/>
         </fileset>
     </path>

@@ -136,7 +136,7 @@ public class Application extends javafx.application.Application {
 
         rootBox.getStyleClass().add("rootBox");
         scene.getStylesheets().add(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("ui/global.css")).toExternalForm());
-        stackPane.getChildren().add(findScene.getRoot());
+        stackPane.getChildren().add(homeScene.getRoot());
 
         stage.setScene(scene);
         stage.show();
