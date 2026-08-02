@@ -3,8 +3,9 @@ package org.nsu.cse215.labgroup3.pms.database.models;
 import javafx.scene.paint.Color;
 
 public enum DeliveryStatus {
-    DELIVERED(Color.GREEN),
+    DELIVERED(Color.LIGHTGREEN),
     IN_TRANSIT(Color.YELLOW),
+    OUT_FOR_DELIVERY(Color.LIGHTBLUE),
     PROCESSING(Color.GRAY),
     RECEIVED(Color.GRAY),
     REJECTED(Color.ORANGE);
