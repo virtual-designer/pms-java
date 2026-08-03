@@ -23,6 +23,10 @@
         <os family="mac" />
     </condition>
 
+    <condition property="is.windows">
+        <os family="windows" />
+    </condition>
+
     <path id="app.classpath">
         <file name="${build.classes.dir}" />
         <file name="${build.resources.dir}" />
@@ -30,6 +34,9 @@
             <include name="**/*.jar"/>
         </fileset>
         <fileset dir="${lib.dir}/javafx-sdk-darwin" if:set="is.darwin">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}/javafx-sdk-windows" if:set="is.windows">
             <include name="**/*.jar"/>
         </fileset>
     </path>
