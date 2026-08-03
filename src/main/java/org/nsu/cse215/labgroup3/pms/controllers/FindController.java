@@ -15,14 +15,12 @@ import org.nsu.cse215.labgroup3.pms.utils.DurationFormatter;
 import org.nsu.cse215.labgroup3.pms.utils.WeightFormatter;
 
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class FindController {
     private final Application application = Application.getInstance();
 
     private final PauseTransition transition = new PauseTransition(Duration.millis(250));
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("");
     private String searchQuery = "";
 
     @FXML
