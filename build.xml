@@ -14,6 +14,7 @@
     <property name="src.mainclass">org.nsu.cse215.labgroup3.pms.Main</property>
     <property name="src.target.version">17</property>
     <property name="lib.dir">libjar</property>
+    <property name="project.version">1.0.0</property>
 
     <condition property="is.linux">
         <os family="unix" name="Linux" />
@@ -74,5 +75,15 @@
 
     <target name="clean">
         <delete dir="${build.dir}" />
+    </target>
+
+    <target name="jar" depends="compile, copyResources">
+        <jar
+            destfile="${build.dir}/${ant.project.name}-${project.version}.jar"
+            manifest="${build.resources.dir}/MANIFEST.MF"
+        >
+            <fileset dir="${build.classes.dir}" />
+            <fileset dir="${build.resources.dir}" />
+        </jar>
     </target>
 </project>
