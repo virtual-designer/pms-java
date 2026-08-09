@@ -12,7 +12,7 @@
     <property name="build.classes.dir">${build.dir}/out/classes/java</property>
     <property name="build.resources.dir">${build.dir}/out/resources</property>
     <property name="src.mainclass">org.nsu.cse215.labgroup3.pms.Main</property>
-    <property name="src.target.version">17</property>
+    <property name="src.target.version">24</property>
     <property name="lib.dir">libjar</property>
     <property name="project.version">1.0.0</property>
 

@@ -6,7 +6,7 @@
     -fx-padding: 30px 60px;
 }
 
-.findView .text-field {
+.findView .textField {
     -fx-prompt-text-fill: #777;
 }
 

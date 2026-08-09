@@ -8,13 +8,39 @@
 }
 
 .textField {
-    -fx-background-color: #323232;
     -fx-border-color: #fff;
     -fx-border-width: 2;
     -fx-border-style: solid;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
+    -fx-background-color: #323232;
+}
+
+.textField, .textField.text-area .content {
     -fx-font-size: 18px;
+}
+
+.textField.text-area {
+    -fx-padding: 0;
+}
+
+.textField.text-area .scroll-pane,
+.textField.text-area .scroll-pane .viewport,
+.textField.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.textField.text-area .scroll-pane .content {
+    -fx-padding: 8px;
+}
+
+.textField.text-area .content {
+    -fx-border-color: #323232;
+    -fx-border-style: solid;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 0;
 }
 
 .textField:focused {
@@ -23,4 +49,122 @@
 
 .rootBox {
     -fx-background-color: #222;
+}
+
+.formTextField {
+    -fx-padding: 5px 8px 5px 8px;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
+.formLabel {
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 5px 0;
+    -fx-font-size: 15px;
+}
+
+.formHelperText {
+    -fx-font-size: 14px;
+}
+
+.scroll-bar {
+    -fx-pref-width: 8px;
+    -fx-max-width: 8px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-max-width: 0;
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: #777;
+}
+
+.textFieldStackPane {
+    -fx-alignment: center-right;
+}
+
+.textFieldEnd {
+    -fx-padding: 10px;
+    -fx-max-width: 60px;
+    -fx-pref-width: 60px;
+    -fx-font-weight: bold;
+}
+
+.datePicker .text-field,
+.datePicker .text-field:focused {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-text-fill: #dddddd;
+}
+
+.datePicker .arrow-button {
+    -fx-background-color: #555;
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.datePicker .arrow-button .arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+    -fx-max-height: 10px;
+    -fx-max-width: 10px;
+    -fx-pref-height: 10px;
+    -fx-pref-width: 10px;
+    -fx-min-height: 0;
+    -fx-min-width: 0;
+}
+
+.datePicker .date-picker-popup,
+.datePicker .date-picker-popup .month-year-pane,
+.datePicker .date-picker-popup .day-name-cell,
+.datePicker .date-picker-popup .day-cell {
+    -fx-background-color: #222;
+}
+
+.datePicker .date-picker-popup .month-year-pane,
+.datePicker .date-picker-popup .day-name-cell,
+.datePicker .date-picker-popup .day-cell,
+.datePicker .date-picker-popup .label {
+    -fx-text-fill: #ddd;
+}
+
+.datePicker .date-picker-popup .month-year-pane,
+.datePicker .date-picker-popup .day-name-cell,
+.datePicker .date-picker-popup .day-cell {
+    -fx-border-color: #444;
+}
+
+.datePicker .date-picker-popup .day-cell:hover {
+    -fx-background-color: #353535;
+}
+
+.datePicker .date-picker-popup > * > .next-month,
+.datePicker .date-picker-popup > * > .previous-month,
+.datePicker .date-picker-popup > * > .next-month:hover,
+.datePicker .date-picker-popup > * > .previous-month:hover {
+    -fx-background-color: #121212;
+    -fx-text-fill: #aaa;
+}
+
+.datePicker .date-picker-popup .button:hover,
+.datePicker .date-picker-popup .button:focused {
+    -fx-background-color: #353535;
+    -fx-cursor: arrow;
+}
+
+.datePicker .date-picker-popup .selected {
+    -fx-background-color: #343434;
+    -fx-text-fill: #007bff;
 }
