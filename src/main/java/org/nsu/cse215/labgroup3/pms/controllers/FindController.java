@@ -63,7 +63,7 @@ public class FindController {
     public Label searchResultParcelETA;
 
     @FXML
-    public void onSearchFieldKeyReleased(KeyEvent keyEvent) {
+    public void onSearchFieldKeyReleased(KeyEvent ignored) {
         if (searchQuery.equals(searchField.textProperty().get())) {
             return;
         }

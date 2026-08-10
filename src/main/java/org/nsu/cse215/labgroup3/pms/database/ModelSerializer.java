@@ -7,7 +7,6 @@ import org.w3c.dom.Node;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
-import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +19,7 @@ public class ModelSerializer {
         Class<?> clazz = object.getClass();
 
         if (!clazz.isAnnotationPresent(Model.class)) {
-            throw new IllegalArgumentException("Cannot serialize object of %s class".formatted(clazz.getName()));
+            throw new SerializationException("Cannot serialize object of %s class".formatted(clazz.getName()));
         }
 
         Model modelAnnotation = getModelAnnotation(clazz);
@@ -35,14 +34,14 @@ public class ModelSerializer {
             }
 
             String name = getFieldName(field, fieldAnnotation);
-            XMLDataSerializer<?> serializer = getFieldSerializer(field, fieldAnnotation);
+            XMLDataSerializer<?> serializer = getFieldSerializer(fieldAnnotation);
 
             try {
                 field.setAccessible(true);
                 Object rawValue = field.get(object);
                 element.setAttribute(name, serializer != null ? ((XMLDataSerializer<Object>) serializer).encode(rawValue) : rawValue.toString());
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                throw new SerializationException(e);
             }
         }
 
@@ -59,14 +58,14 @@ public class ModelSerializer {
         }
 
         if (!clazz.isAnnotationPresent(Model.class)) {
-            throw new IllegalArgumentException("Cannot deserialize object of %s class".formatted(clazz.getName()));
+            throw new SerializationException("Cannot deserialize object of %s class".formatted(clazz.getName()));
         }
 
         Model modelAnnotation = getModelAnnotation(clazz);
         String tagName = getModelTagName(clazz, modelAnnotation);
 
         if (!userNode.getNodeName().equals(tagName)) {
-            throw new IllegalArgumentException("Invalid tag name: %s".formatted(userNode.getNodeName()));
+            throw new SerializationException("Invalid tag name: %s".formatted(userNode.getNodeName()));
         }
 
         NamedNodeMap attributes = userNode.getAttributes();
@@ -79,7 +78,7 @@ public class ModelSerializer {
             }
 
             String name = getFieldName(field, fieldAnnotation);
-            XMLDataSerializer<?> serializer = getFieldSerializer(field, fieldAnnotation);
+            XMLDataSerializer<?> serializer = getFieldSerializer(fieldAnnotation);
 
             field.setAccessible(true);
 
@@ -147,7 +146,7 @@ public class ModelSerializer {
     }
 
     @SuppressWarnings("unchecked")
-    private XMLDataSerializer<?> getFieldSerializer(Field field, org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation) {
+    private XMLDataSerializer<?> getFieldSerializer(org.nsu.cse215.labgroup3.pms.database.Field fieldAnnotation) {
         final var serializerClass = fieldAnnotation.serializer();
 
         if (serializerClass == XMLDataSerializer.class) {

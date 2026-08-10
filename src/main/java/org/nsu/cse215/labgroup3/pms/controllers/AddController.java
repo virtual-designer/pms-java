@@ -39,8 +39,6 @@ public class AddController {
     }
 
     public AddController() {
-        Platform.runLater(() -> {
-            estimatedTimeOfArrival.setConverter(new DateConverter());
-        });
+        Platform.runLater(() -> estimatedTimeOfArrival.setConverter(new DateConverter()));
     }
 }

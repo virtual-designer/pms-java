@@ -12,7 +12,7 @@ public class BackButtonController {
     public VBox backIconWrapper;
 
     @FXML
-    public void onBackIconWrapperClick(MouseEvent event) {
+    public void onBackIconWrapperClick(MouseEvent ignored) {
         application.popView();
     }
 }

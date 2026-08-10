@@ -23,22 +23,22 @@ public class HomeController {
     public Hyperlink licenseLink;
 
     @FXML
-    public void onFindParcelButtonClick(ActionEvent event) {
+    public void onFindParcelButtonClick(ActionEvent ignored) {
         application.pushView(application.findView);
     }
 
     @FXML
-    public void onAddParcelButtonClick(ActionEvent event) {
+    public void onAddParcelButtonClick(ActionEvent ignored) {
         application.pushView(application.addView);
     }
 
     @FXML
-    public void onUpdateParcelButtonClick(ActionEvent actionEvent) {
+    public void onUpdateParcelButtonClick(ActionEvent ignored) {
         application.pushView(application.updateView);
     }
 
     @FXML
-    public void onLicenseLinkClick(ActionEvent actionEvent) {
+    public void onLicenseLinkClick(ActionEvent ignored) {
         application.getHostServices().showDocument(LICENSE_LINK);
     }
 }

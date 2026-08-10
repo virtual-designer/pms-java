@@ -6,6 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -14,10 +15,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.file.Files;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -87,8 +88,8 @@ public class Database {
 
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-        try (OutputStream out = Files.newOutputStream(getDatabaseFilePath())) {
-            transformer.transform(new DOMSource(document), new StreamResult(out));
+        try (FileWriter writer = new FileWriter(getDatabaseFilePath().toString(), StandardCharsets.UTF_8)) {
+            transformer.transform(new DOMSource(document), new StreamResult(writer));
         }
     }
 
@@ -129,8 +130,8 @@ public class Database {
     }
 
     public void load() throws SAXException {
-        try (InputStream in = Files.newInputStream(getDatabaseFilePath())) {
-            Document document = builder.parse(in);
+        try (FileReader reader = new FileReader(getDatabaseFilePath().toString())) {
+            Document document = builder.parse(new InputSource(reader));
             Node database = document.getElementsByTagName("database").item(0);
             NodeList childNodes = database.getChildNodes();
 
