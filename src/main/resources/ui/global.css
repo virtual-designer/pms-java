@@ -168,3 +168,38 @@
     -fx-background-color: #343434;
     -fx-text-fill: #007bff;
 }
+
+.separator .line {
+    -fx-border-color: #444;
+}
+
+.separator {
+    -fx-padding: 10px 0;
+}
+
+.scrollPane,
+.scrollPane:focused,
+.scrollPane .viewport,
+.scrollPane .viewport {
+    -fx-background-color: transparent;
+    -fx-box-border: transparent;
+}
+
+.formSubmitButton {
+    -fx-padding: 10px 25px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #007bff;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+}
+
+.formSubmitButton:focused {
+    -fx-border-color: #ddd;
+}
+
+.formSubmitButton:hover {
+    -fx-background-color: #005ec3;
+}

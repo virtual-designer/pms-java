@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.HBox?>
+
 <VBox
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="org.nsu.cse215.labgroup3.pms.controllers.HomeController"
