@@ -78,6 +78,8 @@
     </target>
 
     <target name="jar" depends="compile, copyResources">
+        <replace file="${build.resources.dir}/MANIFEST.MF" token="@MAIN_CLASS@" value="${src.mainclass}" />
+
         <jar
             destfile="${build.dir}/${ant.project.name}-${project.version}.jar"
             manifest="${build.resources.dir}/MANIFEST.MF"
