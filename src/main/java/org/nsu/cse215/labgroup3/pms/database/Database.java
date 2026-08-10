@@ -153,7 +153,7 @@ public class Database {
             }
         }
         catch (IOException exception) {
-            exception.printStackTrace();
+            exception.printStackTrace(System.err);
         }
     }
 
