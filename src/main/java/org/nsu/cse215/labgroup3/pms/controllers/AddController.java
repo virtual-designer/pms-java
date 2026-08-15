@@ -1,48 +1,138 @@
 package org.nsu.cse215.labgroup3.pms.controllers;
 
 import javafx.application.Platform;
-import javafx.scene.control.DatePicker;
-import javafx.util.StringConverter;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
+import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
+import org.nsu.cse215.labgroup3.pms.Application;
+import org.nsu.cse215.labgroup3.pms.database.models.Address;
+import org.nsu.cse215.labgroup3.pms.database.models.DeliveryStatus;
+import org.nsu.cse215.labgroup3.pms.database.models.Parcel;
+import org.nsu.cse215.labgroup3.pms.database.models.User;
+import org.nsu.cse215.labgroup3.pms.forms.converters.DateConverter;
+import org.nsu.cse215.labgroup3.pms.forms.converters.validators.AddFormValidator;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.TextStyle;
-import java.util.Locale;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Optional;
 
 public class AddController {
+    private final Application application = Application.getInstance();
+
+    @FXML
+    public TextField trackingID;
+
+    @FXML
+    public TextArea description;
+
+    @FXML
+    public TextField weight;
+
+    @FXML
     public DatePicker estimatedTimeOfArrival;
 
-    private static class DateConverter extends StringConverter<LocalDate> {
-        @Override
-        public String toString(LocalDate localDate) {
-            if (localDate == null) {
-                return "";
-            }
+    @FXML
+    public TextArea receiverAddress;
 
-            return "%s %02d, %04d".formatted(localDate.getMonth().getDisplayName(TextStyle.FULL, Locale.US), localDate.getDayOfMonth(), localDate.getYear());
-        }
+    @FXML
+    public TextField receiverUsername;
 
-        @Override
-        public LocalDate fromString(String s) {
-            if (s.isBlank()) {
-                return null;
-            }
+    @FXML
+    public TextField receiverName;
 
-            String[] parts = s.split(",?\\s+");
+    @FXML
+    public TextArea senderAddress;
 
-            if (parts.length != 3) {
-                throw new IllegalArgumentException("Invalid date string: \"%s\"".formatted(s));
-            }
+    @FXML
+    public TextField senderUsername;
 
-            String monthName = parts[0];
-            String dayOfMonth = parts[1];
-            String year = parts[2];
+    @FXML
+    public TextField senderName;
 
-            return LocalDate.of(Integer.parseInt(year, 10), Month.valueOf(monthName.toUpperCase()), Integer.parseInt(dayOfMonth, 10));
-        }
+    @FXML
+    public Button submitButton;
+
+    private final AddFormValidator validator = new AddFormValidator();
+
+    @FXML
+    public void initialize() {
+        estimatedTimeOfArrival.setConverter(new DateConverter());
+
+        validator.attachValidatorOnTextInput(trackingID);
+        validator.attachValidatorOnTextInput(description);
+        validator.attachValidatorOnTextInput(weight);
+        validator.attachValidatorOnDatePicker(estimatedTimeOfArrival);
+        validator.attachValidatorOnTextInput(receiverAddress);
+        validator.attachValidatorOnTextInput(receiverName);
+        validator.attachValidatorOnTextInput(receiverUsername);
+        validator.attachValidatorOnTextInput(senderAddress);
+        validator.attachValidatorOnTextInput(senderName);
+        validator.attachValidatorOnTextInput(senderUsername);
     }
 
-    public AddController() {
-        Platform.runLater(() -> estimatedTimeOfArrival.setConverter(new DateConverter()));
+    @FXML
+    public void onFormSubmit(ActionEvent actionEvent) {
+        boolean result = validator.validateAll(
+            trackingID,
+            description,
+            weight,
+            estimatedTimeOfArrival,
+            receiverAddress,
+            receiverName,
+            receiverUsername,
+            senderAddress,
+            senderName,
+            senderUsername
+        );
+
+        if (!result) {
+            submitButton.setTooltip(new Tooltip("There are validation errors, please correct them first."));
+
+            Platform.runLater(() -> {
+                Bounds bounds = submitButton.localToScreen(submitButton.getBoundsInLocal());
+                submitButton.getTooltip().show(submitButton, bounds.getMinX(), bounds.getMaxY());
+                submitButton.getTooltip().setShowDuration(Duration.millis(5000));
+                submitButton.getTooltip().setAutoHide(true);
+            });
+        }
+        else {
+            submitButton.setTooltip(null);
+
+            Optional<User> existingUser = application.database.findUser(senderUsername.getText());
+            User sender = existingUser.orElseGet(() -> {
+                User user = new User(application.database.nextUserId(), senderName.getText(), senderUsername.getText(), Instant.now());
+                application.database.insertUser(user);
+                return user;
+            });
+
+            existingUser = application.database.findUser(receiverUsername.getText());
+            User receiver = existingUser.orElseGet(() -> {
+                User user = new User(application.database.nextUserId(), receiverName.getText(), receiverUsername.getText(), Instant.now());
+                application.database.insertUser(user);
+                return user;
+            });
+
+            Parcel parcel = new Parcel();
+
+            parcel.setFrom(new Address(sender, senderAddress.getText()));
+            parcel.setTo(new Address(receiver, receiverAddress.getText()));
+            parcel.setId(trackingID.getText());
+            parcel.setDescription(description.getText());
+            parcel.setWeight(Double.parseDouble(weight.getText()));
+            parcel.setExpectedTimeOfArrival(estimatedTimeOfArrival.getValue());
+            parcel.setStatus(DeliveryStatus.PROCESSING);
+
+            application.database.insertParcel(parcel);
+
+            try {
+                application.database.save();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

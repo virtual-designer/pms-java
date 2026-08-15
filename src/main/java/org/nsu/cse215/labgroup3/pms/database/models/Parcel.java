@@ -4,9 +4,9 @@ import org.nsu.cse215.labgroup3.pms.database.Field;
 import org.nsu.cse215.labgroup3.pms.database.Model;
 import org.nsu.cse215.labgroup3.pms.database.serializers.AddressSerializer;
 import org.nsu.cse215.labgroup3.pms.database.serializers.DeliveryStatusSerializer;
-import org.nsu.cse215.labgroup3.pms.database.serializers.ZonedDateTimeSerializer;
+import org.nsu.cse215.labgroup3.pms.database.serializers.LocalDateSerializer;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 
 @Model(tagName = "parcel")
 public class Parcel {
@@ -31,10 +31,10 @@ public class Parcel {
     @Field(serializer = DeliveryStatusSerializer.class)
     private DeliveryStatus status;
 
-    @Field(serializer = ZonedDateTimeSerializer.class)
-    private ZonedDateTime expectedTimeOfArrival;
+    @Field(serializer = LocalDateSerializer.class)
+    private LocalDate expectedTimeOfArrival;
 
-    public Parcel(String id, String description, Address to, Address from, Double weight, DeliveryStatus status, ZonedDateTime expectedTimeOfArrival) {
+    public Parcel(String id, String description, Address to, Address from, Double weight, DeliveryStatus status, LocalDate expectedTimeOfArrival) {
         this.id = id;
         this.description = description;
         this.to = to;
@@ -94,11 +94,11 @@ public class Parcel {
         this.status = status;
     }
 
-    public ZonedDateTime getExpectedTimeOfArrival() {
+    public LocalDate getExpectedTimeOfArrival() {
         return expectedTimeOfArrival;
     }
 
-    public void setExpectedTimeOfArrival(ZonedDateTime expectedTimeOfArrival) {
+    public void setExpectedTimeOfArrival(LocalDate expectedTimeOfArrival) {
         this.expectedTimeOfArrival = expectedTimeOfArrival;
     }
 }

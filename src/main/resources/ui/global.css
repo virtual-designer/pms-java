@@ -203,3 +203,12 @@
 .formSubmitButton:hover {
     -fx-background-color: #005ec3;
 }
+
+.textFieldError {
+    -fx-border-color: #f14a60;
+}
+
+.tooltip {
+    -fx-font-family: "Google Sans";
+    -fx-font-size: 14px;
+}

@@ -31,17 +31,19 @@
                     <VBox>
                         <Label text="Tracking ID" styleClass="text, formLabel" />
                         <TextField
-                                styleClass="text, textField, formTextField"
-                                promptText="8-character tracking ID"
+                            styleClass="text, textField, formTextField"
+                            promptText="8-character tracking ID"
+                            fx:id="trackingID"
                         />
                     </VBox>
 
                     <VBox>
                         <Label text="Description" styleClass="text, formLabel" />
                         <TextArea
-                                styleClass="text, textField, formTextField"
-                                prefRowCount="5"
-                                promptText="Enter a description...."
+                            styleClass="text, textField, formTextField"
+                            prefRowCount="5"
+                            promptText="Enter a description...."
+                            fx:id="description"
                         >
                         </TextArea>
                         <Text styleClass="text, formHelperText">Descriptions should be easy-to-understand and compact.</Text>
@@ -58,8 +60,9 @@
 
                             <StackPane styleClass="textFieldStackPane">
                                 <TextField
-                                        styleClass="text, textField, formTextField"
-                                        promptText="Parcel weight in grams"
+                                    styleClass="text, textField, formTextField"
+                                    promptText="Parcel weight in grams"
+                                    fx:id="weight"
                                 />
 
                                 <Label styleClass="text, textFieldEnd">grams</Label>
@@ -69,10 +72,10 @@
                         <VBox GridPane.columnIndex="1">
                             <Label text="ETA" styleClass="text, formLabel" />
                             <DatePicker
-                                    styleClass="text, textField, datePicker"
-                                    maxWidth="Infinity"
-                                    promptText="Pick a date..."
-                                    fx:id="estimatedTimeOfArrival"
+                                styleClass="text, textField, datePicker"
+                                maxWidth="Infinity"
+                                promptText="Pick a date..."
+                                fx:id="estimatedTimeOfArrival"
                             />
                         </VBox>
                     </GridPane>
@@ -93,25 +96,28 @@
                                 <VBox>
                                     <Label text="Name" styleClass="text, formLabel" />
                                     <TextField
-                                            styleClass="text, textField, formTextField"
-                                            promptText="Sender's name..."
+                                        styleClass="text, textField, formTextField"
+                                        promptText="Sender's name..."
+                                        fx:id="senderName"
                                     />
                                 </VBox>
 
                                 <VBox>
                                     <Label text="Username" styleClass="text, formLabel" />
                                     <TextField
-                                            styleClass="text, textField, formTextField"
-                                            promptText="Sender's username..."
+                                        styleClass="text, textField, formTextField"
+                                        promptText="Sender's username..."
+                                        fx:id="senderUsername"
                                     />
                                 </VBox>
 
                                 <VBox>
                                     <Label text="Full Address" styleClass="text, formLabel" />
                                     <TextArea
-                                            styleClass="text, textField, formTextField"
-                                            prefRowCount="5"
-                                            promptText="Sender's address...."
+                                        styleClass="text, textField, formTextField"
+                                        prefRowCount="5"
+                                        promptText="Sender's address...."
+                                        fx:id="senderAddress"
                                     >
                                     </TextArea>
                                 </VBox>
@@ -128,25 +134,28 @@
                                 <VBox>
                                     <Label text="Name" styleClass="text, formLabel" />
                                     <TextField
-                                            styleClass="text, textField, formTextField"
-                                            promptText="Receiver's name..."
+                                        styleClass="text, textField, formTextField"
+                                        promptText="Receiver's name..."
+                                        fx:id="receiverName"
                                     />
                                 </VBox>
 
                                 <VBox>
                                     <Label text="Username" styleClass="text, formLabel" />
                                     <TextField
-                                            styleClass="text, textField, formTextField"
-                                            promptText="Receiver's username..."
+                                        styleClass="text, textField, formTextField"
+                                        promptText="Receiver's username..."
+                                        fx:id="receiverUsername"
                                     />
                                 </VBox>
 
                                 <VBox>
                                     <Label text="Full Address" styleClass="text, formLabel" />
                                     <TextArea
-                                            styleClass="text, textField, formTextField"
-                                            prefRowCount="5"
-                                            promptText="Receiver's address...."
+                                        styleClass="text, textField, formTextField"
+                                        prefRowCount="5"
+                                        promptText="Receiver's address...."
+                                        fx:id="receiverAddress"
                                     >
                                     </TextArea>
                                 </VBox>
@@ -159,7 +168,7 @@
                             <Insets bottom="100" />
                         </VBox.margin>
 
-                        <Button styleClass="formSubmitButton">
+                        <Button styleClass="formSubmitButton" onAction="#onFormSubmit" fx:id="submitButton">
                             Add parcel
                         </Button>
                     </VBox>

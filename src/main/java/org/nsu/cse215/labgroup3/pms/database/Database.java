@@ -30,6 +30,7 @@ public class Database {
     private final Transformer transformer = TransformerFactory.newInstance().newTransformer();
     private final Map<Long, User> users = new LinkedHashMap<>();
     private final Map<String, Parcel> parcels = new LinkedHashMap<>();
+    private Long nextUserId = 0L;
 
     public Database() throws ParserConfigurationException, TransformerConfigurationException {
     }
@@ -95,6 +96,7 @@ public class Database {
 
     private void loadUsers(Node usersNode) {
         NodeList userNodes = usersNode.getChildNodes();
+        Long maxId = 0L;
 
         for (int i = 0; i < userNodes.getLength(); i++) {
             Node userNode = userNodes.item(i);
@@ -104,11 +106,18 @@ public class Database {
             }
 
             try {
-                insertUser(serializer.deserialize(User.class, userNode));
+                User user = serializer.deserialize(User.class, userNode);
+                insertUser(user);
+
+                if (maxId < user.getId()) {
+                    maxId = user.getId();
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
+
+        nextUserId = maxId + 1;
     }
 
     private void loadParcels(Node parcelsNode) {
@@ -157,8 +166,22 @@ public class Database {
         }
     }
 
+    public Optional<User> findUser(String username) {
+        for (User user : users.values()) {
+            if (user.getUsername().equals(username)) {
+                return Optional.of(user);
+            }
+        }
+
+        return Optional.empty();
+    }
+
     protected Path getDatabaseFilePath() {
         String homeDirectory = System.getProperty("user.home");
         return Path.of(homeDirectory, ".pms-db.xml");
+    }
+
+    public Long nextUserId() {
+        return ++nextUserId;
     }
 }
