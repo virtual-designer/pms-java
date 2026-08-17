@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
 import javafx.scene.control.*;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import org.nsu.cse215.labgroup3.pms.Application;
 import org.nsu.cse215.labgroup3.pms.database.models.Address;
@@ -116,6 +115,9 @@ public class AddController {
                 return user;
             });
 
+            System.out.println(sender);
+            System.out.println(receiver);
+
             Parcel parcel = new Parcel();
 
             parcel.setFrom(new Address(sender, senderAddress.getText()));
@@ -130,8 +132,11 @@ public class AddController {
 
             try {
                 application.database.save();
+                Alert alert = new org.nsu.cse215.labgroup3.pms.ui.components.Alert(Alert.AlertType.INFORMATION, "The new parcel has been saved.", ButtonType.OK);
+                alert.show();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                Alert alert = new org.nsu.cse215.labgroup3.pms.ui.components.Alert(Alert.AlertType.ERROR, "Error saving parcel: " + e.getMessage(), ButtonType.OK);
+                alert.show();
             }
         }
     }

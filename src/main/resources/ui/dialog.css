@@ -1,0 +1,31 @@
+.dialog,
+.dialog .header-panel {
+    -fx-background-color: #000;
+}
+
+.dialog * {
+    -fx-text-fill: #fff;
+    -fx-font-family: "Google Sans";
+}
+
+.button {
+    -fx-text-fill: #fff;
+    -fx-background-color: #007bff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 0;
+    -fx-min-width: 90px;
+    -fx-max-width: 90px;
+    -fx-pref-width: 90px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #004fa6;
+}
+
+.label {
+    -fx-font-size: 16px;
+    -fx-padding: 25px;
+}
