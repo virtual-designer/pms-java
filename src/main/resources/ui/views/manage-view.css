@@ -1,0 +1,89 @@
+.rootBox {
+    -fx-padding: 10px;
+}
+
+.manageView {
+}
+
+.innerRootBox {
+    -fx-padding: 30px 60px;
+}
+
+.parcel {
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #333;
+    -fx-spacing: 10px;
+}
+
+.listBoxWrapper {
+    -fx-padding: 20px 0;
+}
+
+.label {
+    -fx-text-fill: #fff;
+}
+
+.trackingID {
+    -fx-background-color: #111;
+    -fx-padding: 1px 3px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 16px;
+}
+
+.editButton, .deleteButton {
+    -fx-max-width: 70px;
+    -fx-pref-width: 70px;
+    -fx-min-width: 70px;
+}
+
+.editButton {
+    -fx-background-color: #007bff;
+}
+
+.editButton:hover {
+    -fx-background-color: #0055b1;
+}
+
+.deleteButton {
+    -fx-background-color: #c32a48;
+}
+
+.deleteButton:hover {
+    -fx-background-color: #8c1125;
+}
+
+.expandIcon {
+    -fx-rotate: -90deg;
+}
+
+.expandIcon.expanded {
+    -fx-rotate: 90deg;
+}
+
+.expandIconWrapper:hover .expandIcon {
+    -fx-opacity: 0.7;
+}
+
+.infoField .fieldLabel {
+    -fx-font-weight: bold;
+}
+
+.textField {
+    -fx-prompt-text-fill: #777;
+}
+
+.searchField {
+    -fx-padding: 5px 0 5px 38px;
+}
+
+.searchFieldIconWrapper {
+    -fx-padding: 0 0 1px 12px;
+    -fx-max-width: 50px;
+    -fx-alignment: center-left;
+}
+
+.searchFieldWrapper {
+    -fx-padding: 20px 0 0 0;
+}

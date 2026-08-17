@@ -1,29 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
 
 <VBox
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.UpdateController"
-    spacing="10"
-    stylesheets="@update-view.css"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.nsu.cse215.labgroup3.pms.controllers.UpdateController"
+        spacing="10"
+        stylesheets="@update-view.css"
 >
-    <fx:include source="../components/back-button.fxml" />
-
-    <VBox
-        styleClass="innerRootBox"
-    >
-        <Label
-            text="Update a parcel"
-            styleClass="text, topHeading"
-        />
-
+    <ScrollPane hbarPolicy="NEVER" fitToWidth="true" styleClass="scrollPane">
         <VBox>
-            <VBox.margin>
-                <Insets top="25" />
-            </VBox.margin>
+            <fx:include source="../components/back-button.fxml"/>
+
+            <VBox
+                    styleClass="innerRootBox"
+            >
+                <Label
+                        text="Update a parcel"
+                        styleClass="text, topHeading"
+                />
+
+                <VBox styleClass="formBox">
+                    <VBox.margin>
+                        <Insets top="25"/>
+                    </VBox.margin>
+
+                    <VBox>
+                        <Label text="Tracking ID" styleClass="text, formLabel"/>
+                        <TextField
+                                styleClass="text, textField, formTextField"
+                                promptText="8-character tracking ID"
+                                fx:id="trackingID"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <Label text="Description" styleClass="text, formLabel"/>
+                        <TextArea
+                                styleClass="text, textField, formTextField"
+                                prefRowCount="5"
+                                promptText="Enter a description...."
+                                fx:id="description"
+                        >
+                        </TextArea>
+                        <Text styleClass="text, formHelperText">Descriptions should be easy-to-understand and compact.
+                        </Text>
+                    </VBox>
+
+                    <GridPane hgap="10">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50"/>
+                            <ColumnConstraints percentWidth="50"/>
+                        </columnConstraints>
+
+                        <VBox GridPane.columnIndex="0">
+                            <Label text="Weight" styleClass="text, formLabel"/>
+
+                            <StackPane styleClass="textFieldStackPane">
+                                <TextField
+                                        styleClass="text, textField, formTextField"
+                                        promptText="Parcel weight in grams"
+                                        fx:id="weight"
+                                />
+
+                                <Label styleClass="text, textFieldEnd">grams</Label>
+                            </StackPane>
+                        </VBox>
+
+                        <VBox GridPane.columnIndex="1">
+                            <Label text="ETA" styleClass="text, formLabel"/>
+                            <DatePicker
+                                    styleClass="text, textField, datePicker"
+                                    maxWidth="Infinity"
+                                    promptText="Pick a date..."
+                                    fx:id="estimatedTimeOfArrival"
+                            />
+                        </VBox>
+                    </GridPane>
+
+                    <GridPane hgap="20" style="-fx-padding: 30px 0;">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="50"/>
+                            <ColumnConstraints percentWidth="50"/>
+                        </columnConstraints>
+
+                        <VBox GridPane.columnIndex="0">
+                            <VBox>
+                                <Label text="From:" styleClass="text" style="-fx-font-size: 16px;"/>
+                                <Separator/>
+                            </VBox>
+
+                            <VBox spacing="20">
+                                <VBox>
+                                    <Label text="Name" styleClass="text, formLabel"/>
+                                    <TextField
+                                            styleClass="text, textField, formTextField"
+                                            promptText="Sender's name..."
+                                            fx:id="senderName"
+                                    />
+                                </VBox>
+
+                                <VBox>
+                                    <Label text="Username" styleClass="text, formLabel"/>
+                                    <TextField
+                                            styleClass="text, textField, formTextField"
+                                            promptText="Sender's username..."
+                                            fx:id="senderUsername"
+                                    />
+                                </VBox>
+
+                                <VBox>
+                                    <Label text="Full Address" styleClass="text, formLabel"/>
+                                    <TextArea
+                                            styleClass="text, textField, formTextField"
+                                            prefRowCount="5"
+                                            promptText="Sender's address...."
+                                            fx:id="senderAddress"
+                                    >
+                                    </TextArea>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox GridPane.columnIndex="1">
+                            <VBox>
+                                <Label text="To:" styleClass="text" style="-fx-font-size: 16px;"/>
+                                <Separator/>
+                            </VBox>
+
+                            <VBox spacing="20">
+                                <VBox>
+                                    <Label text="Name" styleClass="text, formLabel"/>
+                                    <TextField
+                                            styleClass="text, textField, formTextField"
+                                            promptText="Receiver's name..."
+                                            fx:id="receiverName"
+                                    />
+                                </VBox>
+
+                                <VBox>
+                                    <Label text="Username" styleClass="text, formLabel"/>
+                                    <TextField
+                                            styleClass="text, textField, formTextField"
+                                            promptText="Receiver's username..."
+                                            fx:id="receiverUsername"
+                                    />
+                                </VBox>
+
+                                <VBox>
+                                    <Label text="Full Address" styleClass="text, formLabel"/>
+                                    <TextArea
+                                            styleClass="text, textField, formTextField"
+                                            prefRowCount="5"
+                                            promptText="Receiver's address...."
+                                            fx:id="receiverAddress"
+                                    >
+                                    </TextArea>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                    </GridPane>
+
+                    <VBox alignment="CENTER">
+                        <VBox.margin>
+                            <Insets bottom="100"/>
+                        </VBox.margin>
+
+                        <Button styleClass="formSubmitButton" onAction="#onFormSubmit" fx:id="submitButton">
+                            Update parcel
+                        </Button>
+                    </VBox>
+                </VBox>
+            </VBox>
         </VBox>
-    </VBox>
+    </ScrollPane>
 </VBox>

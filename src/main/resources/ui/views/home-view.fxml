@@ -31,19 +31,15 @@
             Add new parcel
         </Button>
 
-        <Button styleClass="optionButton" fx:id="findParcelButton" onAction="#onFindParcelButtonClick">
-            Find a parcel
-        </Button>
-
-        <Button styleClass="optionButton" fx:id="updateParcelButton" onAction="#onUpdateParcelButtonClick">
-            Update parcel details
+        <Button styleClass="optionButton" fx:id="listParcelsButton" onAction="#onListParcelsButtonClick">
+            Manage parcels
         </Button>
     </VBox>
 
 
     <VBox styleClass="footer">
         <VBox.margin>
-            <Insets bottom="50" top="25" />
+            <Insets bottom="50" top="75" />
         </VBox.margin>
 
         <Label styleClass="footerLabel">Copyright (C) CSE215L.2 Lab Group 3 (Summer 2026)</Label>

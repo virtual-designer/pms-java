@@ -212,3 +212,20 @@
     -fx-font-family: "Google Sans";
     -fx-font-size: 14px;
 }
+
+.customButton {
+    -fx-text-fill: #fff;
+    -fx-background-color: #007bff;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px 0;
+    -fx-min-width: 90px;
+    -fx-max-width: 90px;
+    -fx-pref-width: 90px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+}
+
+.customButton:hover {
+    -fx-background-color: #004fa6;
+}

@@ -4,10 +4,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 
-public class FindView extends View {
-    public static final String VIEW_NAME = "views/find-view";
+public class ManageView extends View {
+    public static final String VIEW_NAME = "views/manage-view";
 
-    public FindView(Scene scene) {
+    public ManageView(Scene scene) {
         super(scene);
     }
 

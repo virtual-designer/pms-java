@@ -35,25 +35,6 @@ public class Database {
     public Database() throws ParserConfigurationException, TransformerConfigurationException {
     }
 
-    public Optional<User> getUser(long id) {
-        return Optional.ofNullable(users.getOrDefault(id, null));
-    }
-
-    public boolean insertUser(User user) {
-        long id = user.getId();
-
-        if (users.containsKey(id)) {
-            return false;
-        }
-
-        users.put(id, user);
-        return true;
-    }
-
-    public Optional<Parcel> getParcel(String id) {
-        return Optional.ofNullable(parcels.getOrDefault(id, null));
-    }
-
     public boolean insertParcel(Parcel parcel) {
         String id = parcel.getId();
 
@@ -166,7 +147,7 @@ public class Database {
         }
     }
 
-    public Optional<User> findUser(String username) {
+    public Optional<User> findUserByUsername(String username) {
         for (User user : users.values()) {
             if (user.getUsername().equals(username)) {
                 return Optional.of(user);
@@ -176,6 +157,25 @@ public class Database {
         return Optional.empty();
     }
 
+    public Optional<User> getUser(long id) {
+        return Optional.ofNullable(users.getOrDefault(id, null));
+    }
+
+    public boolean insertUser(User user) {
+        long id = user.getId();
+
+        if (users.containsKey(id)) {
+            return false;
+        }
+
+        users.put(id, user);
+        return true;
+    }
+
+    public Optional<Parcel> getParcel(String id) {
+        return Optional.ofNullable(parcels.getOrDefault(id, null));
+    }
+
     protected Path getDatabaseFilePath() {
         String homeDirectory = System.getProperty("user.home");
         return Path.of(homeDirectory, ".pms-db.xml");
@@ -183,5 +183,17 @@ public class Database {
 
     public Long nextUserId() {
         return ++nextUserId;
+    }
+
+    public Parcel deleteParcel(String previousTrackingID) {
+        return parcels.remove(previousTrackingID);
+    }
+
+    public Map<String, Parcel> getAllParcels() {
+        return parcels;
+    }
+
+    public User deleteUser(Long id) {
+        return users.remove(id);
     }
 }

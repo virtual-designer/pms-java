@@ -16,7 +16,7 @@
             <fx:include source="../components/back-button.fxml" />
 
             <VBox
-                    styleClass="innerRootBox"
+                styleClass="innerRootBox"
             >
                 <Label
                         text="Add a parcel"

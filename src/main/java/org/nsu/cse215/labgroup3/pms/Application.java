@@ -10,8 +10,8 @@ import javafx.util.Duration;
 import org.nsu.cse215.labgroup3.pms.core.ui.View;
 import org.nsu.cse215.labgroup3.pms.database.Database;
 import org.nsu.cse215.labgroup3.pms.ui.views.AddView;
-import org.nsu.cse215.labgroup3.pms.ui.views.FindView;
 import org.nsu.cse215.labgroup3.pms.ui.views.HomeView;
+import org.nsu.cse215.labgroup3.pms.ui.views.ManageView;
 import org.nsu.cse215.labgroup3.pms.ui.views.UpdateView;
 import org.nsu.cse215.labgroup3.pms.utils.FontUtils;
 
@@ -29,11 +29,11 @@ public class Application extends javafx.application.Application {
     private final Scene scene = new Scene(rootBox, 750, 550);
 
     public final View homeView = new HomeView(scene);
-    public final View findView = new FindView(scene);
     public final View addView = new AddView(scene);
     public final View updateView = new UpdateView(scene);
+    public final View manageView = new ManageView(scene);
 
-    public final List<View> views = List.of(homeView, findView, addView, updateView);
+    public final List<View> views = List.of(homeView, addView, updateView, manageView);
 
     private static Application instance;
 

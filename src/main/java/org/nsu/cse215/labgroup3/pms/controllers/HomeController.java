@@ -11,21 +11,13 @@ public class HomeController {
     private final Application application = Application.getInstance();
 
     @FXML
-    public Button findParcelButton;
-
-    @FXML
     public Button addParcelButton;
-
-    @FXML
-    public Button updateParcelButton;
 
     @FXML
     public Hyperlink licenseLink;
 
     @FXML
-    public void onFindParcelButtonClick(ActionEvent ignored) {
-        application.pushView(application.findView);
-    }
+    public Button listParcelsButton;
 
     @FXML
     public void onAddParcelButtonClick(ActionEvent ignored) {
@@ -33,8 +25,9 @@ public class HomeController {
     }
 
     @FXML
-    public void onUpdateParcelButtonClick(ActionEvent ignored) {
-        application.pushView(application.updateView);
+    public void onListParcelsButtonClick(ActionEvent ignored) {
+        application.pushView(application.manageView);
+        ListController.getInstance().update();
     }
 
     @FXML

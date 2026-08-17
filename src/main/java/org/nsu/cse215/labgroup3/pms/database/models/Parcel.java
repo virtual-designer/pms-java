@@ -32,16 +32,16 @@ public class Parcel {
     private DeliveryStatus status;
 
     @Field(serializer = LocalDateSerializer.class)
-    private LocalDate expectedTimeOfArrival;
+    private LocalDate expectedDateOfArrival;
 
-    public Parcel(String id, String description, Address to, Address from, Double weight, DeliveryStatus status, LocalDate expectedTimeOfArrival) {
+    public Parcel(String id, String description, Address to, Address from, Double weight, DeliveryStatus status, LocalDate expectedDateOfArrival) {
         this.id = id;
         this.description = description;
         this.to = to;
         this.from = from;
         this.weight = weight;
         this.status = status;
-        this.expectedTimeOfArrival = expectedTimeOfArrival;
+        this.expectedDateOfArrival = expectedDateOfArrival;
     }
 
     public Parcel() {}
@@ -94,11 +94,11 @@ public class Parcel {
         this.status = status;
     }
 
-    public LocalDate getExpectedTimeOfArrival() {
-        return expectedTimeOfArrival;
+    public LocalDate getExpectedDateOfArrival() {
+        return expectedDateOfArrival;
     }
 
-    public void setExpectedTimeOfArrival(LocalDate expectedTimeOfArrival) {
-        this.expectedTimeOfArrival = expectedTimeOfArrival;
+    public void setExpectedDateOfArrival(LocalDate expectedDateOfArrival) {
+        this.expectedDateOfArrival = expectedDateOfArrival;
     }
 }

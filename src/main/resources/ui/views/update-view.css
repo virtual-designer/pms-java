@@ -5,3 +5,7 @@
 .innerRootBox {
     -fx-padding: 30px 60px;
 }
+
+.formBox {
+    -fx-spacing: 15px;
+}
