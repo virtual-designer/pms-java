@@ -29,6 +29,7 @@ public class UpdateController extends BaseAddUpdateController {
     private void update() {
         trackingID.textProperty().setValue(previousParcel.getId());
         description.textProperty().setValue(previousParcel.getDescription());
+        status.setValue(previousParcel.getStatus());
         weight.textProperty().setValue(previousParcel.getWeight().toString());
         estimatedTimeOfArrival.setValue(previousParcel.getExpectedDateOfArrival());
         receiverAddress.textProperty().setValue(previousParcel.getTo().getFullAddress());

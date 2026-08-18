@@ -39,7 +39,7 @@
 
     <VBox styleClass="footer">
         <VBox.margin>
-            <Insets bottom="50" top="75" />
+            <Insets bottom="10" top="75" />
         </VBox.margin>
 
         <Label styleClass="footerLabel">Copyright (C) CSE215L.2 Lab Group 3 (Summer 2026)</Label>

@@ -1,6 +1,6 @@
 .dialog,
 .dialog .header-panel {
-    -fx-background-color: #000;
+    -fx-background-color: #222;
 }
 
 .dialog * {

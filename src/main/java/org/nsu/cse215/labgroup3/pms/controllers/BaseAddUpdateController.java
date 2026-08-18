@@ -12,7 +12,8 @@ import org.nsu.cse215.labgroup3.pms.database.models.DeliveryStatus;
 import org.nsu.cse215.labgroup3.pms.database.models.Parcel;
 import org.nsu.cse215.labgroup3.pms.database.models.User;
 import org.nsu.cse215.labgroup3.pms.forms.converters.DateConverter;
-import org.nsu.cse215.labgroup3.pms.forms.converters.validators.AddFormValidator;
+import org.nsu.cse215.labgroup3.pms.forms.converters.DeliveryStatusConverter;
+import org.nsu.cse215.labgroup3.pms.forms.validators.AddFormValidator;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -25,6 +26,9 @@ public abstract class BaseAddUpdateController {
 
     @FXML
     public TextArea description;
+
+    @FXML
+    public ChoiceBox<DeliveryStatus> status;
 
     @FXML
     public TextField weight;
@@ -59,6 +63,10 @@ public abstract class BaseAddUpdateController {
     public void initialize() {
         estimatedTimeOfArrival.setConverter(new DateConverter());
 
+        status.setConverter(new DeliveryStatusConverter());
+        status.setValue(DeliveryStatus.PROCESSING);
+        status.getItems().addAll(DeliveryStatus.values());
+
         validator.attachValidatorOnTextInput(trackingID);
         validator.attachValidatorOnTextInput(description);
         validator.attachValidatorOnTextInput(weight);
@@ -72,7 +80,7 @@ public abstract class BaseAddUpdateController {
     }
 
     @FXML
-    public void onFormSubmit(ActionEvent actionEvent) {
+    public void onFormSubmit(ActionEvent ignored) {
         boolean result = validator.validateAll(
             trackingID,
             description,
@@ -124,7 +132,7 @@ public abstract class BaseAddUpdateController {
             parcel.setDescription(description.getText());
             parcel.setWeight(Double.parseDouble(weight.getText()));
             parcel.setExpectedDateOfArrival(estimatedTimeOfArrival.getValue());
-            parcel.setStatus(DeliveryStatus.PROCESSING);
+            parcel.setStatus(status.getValue());
 
             onFormSubmitValid(sender, receiver, parcel);
         }

@@ -1,4 +1,4 @@
-package org.nsu.cse215.labgroup3.pms.forms.converters.validators;
+package org.nsu.cse215.labgroup3.pms.forms.validators;
 
 import javafx.scene.control.Control;
 import javafx.scene.control.DatePicker;

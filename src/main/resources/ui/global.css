@@ -7,6 +7,10 @@
     -fx-font-size: 30px;
 }
 
+.clamped .topHeading {
+    -fx-padding: 0 0 20px 0;
+}
+
 .textField {
     -fx-border-color: #fff;
     -fx-border-width: 2;
@@ -228,4 +232,71 @@
 
 .customButton:hover {
     -fx-background-color: #004fa6;
+}
+
+.context-menu {
+    -fx-background-color: #232323;
+    -fx-text-fill: #ddd;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-min-width: 200px;
+    -fx-padding: 0;
+}
+
+.context-menu .separator {
+    -fx-padding: 0;
+}
+
+.context-menu .menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 5px 15px;
+    -fx-font-size: 15px;
+}
+
+.context-menu .menu-item:first-child {
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-border-radius: 5px 5px 0 0;
+}
+
+.context-menu .menu-item:last-child {
+    -fx-background-radius: 0 0 5px 5px;
+    -fx-border-radius: 0 0 5px 5px;
+}
+
+.context-menu .menu-item,
+.context-menu .menu-item .label {
+    -fx-cursor: hand;
+}
+
+.context-menu .menu-item .label {
+    -fx-text-fill: #ddd;
+}
+
+.context-menu .menu-item:hover {
+    -fx-background-color: #555;
+}
+
+.choice-box {
+    -fx-border-color: #fff;
+    -fx-border-width: 2;
+    -fx-border-style: solid;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #323232;
+    -fx-pref-width: infinity;
+    -fx-max-width: infinity;
+    -fx-padding: 2px;
+}
+
+.choice-box .context-menu {
+    -fx-min-width: 600px;
+}
+
+.choice-box .label {
+    -fx-text-fill: #fff;
+    -fx-font-size: 15px;
+}
+
+.clamped {
+    -fx-max-width: 650px;
 }

@@ -136,6 +136,8 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws Exception {
         initializeViews();
         stage.setTitle(STAGE_TITLE);
+        stage.setMinHeight(scene.getHeight());
+        stage.setMinWidth(scene.getWidth());
 
         rootBox.getStyleClass().add("rootBox");
         scene.getStylesheets().add(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource("ui/global.css")).toExternalForm());

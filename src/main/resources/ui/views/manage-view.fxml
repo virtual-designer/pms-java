@@ -8,48 +8,56 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <VBox
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.ListController"
-    spacing="10"
-    stylesheets="@manage-view.css"
-    styleClass="manageView"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="org.nsu.cse215.labgroup3.pms.controllers.ListController"
+        spacing="10"
+        stylesheets="@manage-view.css"
+        styleClass="manageView"
 >
     <ScrollPane hbarPolicy="NEVER" fitToWidth="true" styleClass="scrollPane">
         <VBox>
             <fx:include source="../components/back-button.fxml"/>
 
             <VBox
-                styleClass="innerRootBox"
+                    styleClass="innerRootBox"
             >
-                <Label
-                    text="Manage parcels"
-                    styleClass="text, topHeading"
-                />
 
-                <VBox styleClass="searchFieldWrapper">
-                    <StackPane alignment="CENTER_LEFT">
-                        <TextField
-                                styleClass="text, textField, searchField"
-                                promptText="Start typing to search..."
-                                fx:id="searchField"
-                                onKeyReleased="#onSearchFieldKeyReleased"
-                        />
-
-                        <VBox styleClass="searchFieldIconWrapper">
-                            <ImageView>
-                                <Image url="@../../icons/search.png" requestedHeight="20" requestedWidth="20" preserveRatio="true" smooth="true" />
-                            </ImageView>
+                <VBox alignment="CENTER">
+                    <VBox styleClass="clamped">
+                        <VBox alignment="CENTER_LEFT">
+                            <Label
+                                    text="Manage parcels"
+                                    styleClass="text, topHeading"
+                            />
                         </VBox>
-                    </StackPane>
-                </VBox>
 
-                <VBox styleClass="listBoxWrapper">
-                    <Label fx:id="noSearchResultFoundLabel" styleClass="text" visible="false">
-                        No parcel found.
-                    </Label>
+                        <VBox styleClass="searchFieldWrapper">
+                            <StackPane alignment="CENTER_LEFT">
+                                <TextField
+                                        styleClass="text, textField, searchField"
+                                        promptText="Start typing to search..."
+                                        fx:id="searchField"
+                                        onKeyReleased="#onSearchFieldKeyReleased"
+                                />
 
-                    <VBox fx:id="listBox" spacing="10">
+                                <VBox styleClass="searchFieldIconWrapper">
+                                    <ImageView>
+                                        <Image url="@../../icons/search.png" requestedHeight="20" requestedWidth="20"
+                                               preserveRatio="true" smooth="true"/>
+                                    </ImageView>
+                                </VBox>
+                            </StackPane>
+                        </VBox>
 
+                        <VBox styleClass="listBoxWrapper">
+                            <Label fx:id="noSearchResultFoundLabel" styleClass="text" visible="false">
+                                No parcel found.
+                            </Label>
+
+                            <VBox fx:id="listBox" spacing="10">
+
+                            </VBox>
+                        </VBox>
                     </VBox>
                 </VBox>
             </VBox>
