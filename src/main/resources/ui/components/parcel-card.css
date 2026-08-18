@@ -1,0 +1,90 @@
+.topHBox,
+.leftHBox,
+.rightHBox,
+.parcelStatusWrapper,
+.expandIconWrapper {
+    -fx-alignment: center;
+}
+
+.parcel {
+    -fx-padding: 10px;
+    -fx-background-radius: 5px;
+    -fx-background-color: #333;
+    -fx-spacing: 10px;
+}
+
+.label {
+    -fx-text-fill: #fff;
+}
+
+.leftHBox {
+    -fx-spacing: 12px;
+}
+
+.parcelStatusWrapper {
+    -fx-spacing: 5px;
+}
+
+.parcelTrackingID {
+    -fx-background-color: #111;
+    -fx-padding: 1px 3px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 16px;
+}
+
+.parcelETA {
+    -fx-text-fill: #ccc;
+}
+
+.editButton, .deleteButton {
+    -fx-max-width: 70px;
+    -fx-pref-width: 70px;
+    -fx-min-width: 70px;
+}
+
+.editButton {
+    -fx-background-color: #007bff;
+}
+
+.editButton:hover {
+    -fx-background-color: #0055b1;
+}
+
+.deleteButton {
+    -fx-background-color: #c32a48;
+}
+
+.deleteButton:hover {
+    -fx-background-color: #8c1125;
+}
+
+.expandIcon {
+    -fx-rotate: -90deg;
+}
+
+.expandIcon.expanded {
+    -fx-rotate: 90deg;
+}
+
+.expandIconWrapper:hover .expandIcon {
+    -fx-opacity: 0.7;
+}
+
+.infoField .fieldLabel {
+    -fx-font-weight: bold;
+}
+
+.infoField .fieldValue {
+
+}
+
+.collapsiblePane {
+    -fx-padding: 10px 5px 5px 5px;
+}
+
+.controls {
+    -fx-padding: 20px 0 0 0;
+    -fx-spacing: 10px;
+    -fx-alignment: center-right;
+}

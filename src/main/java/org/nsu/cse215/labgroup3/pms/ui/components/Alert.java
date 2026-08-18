@@ -23,11 +23,11 @@ public class Alert extends javafx.scene.control.Alert {
         dialogPane.setHeader(new VBox());
         dialogPane.getChildren().removeFirst();
         dialogPane
-                .getStylesheets()
-                .add(Objects.requireNonNull(classLoader.getResource("ui/global.css")).toExternalForm());
-        dialogPane
-                .getStylesheets()
-                .add(Objects.requireNonNull(classLoader.getResource("ui/dialog.css")).toExternalForm());
+            .getStylesheets()
+            .addAll(
+                Objects.requireNonNull(classLoader.getResource("ui/global.css")).toExternalForm(),
+                Objects.requireNonNull(classLoader.getResource("ui/dialog.css")).toExternalForm()
+            );
         dialogPane
             .getStyleClass().add("dialog");
     }

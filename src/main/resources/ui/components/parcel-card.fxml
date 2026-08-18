@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Button?>
+<VBox
+    xmlns="http://javafx.com/javafx"
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="org.nsu.cse215.labgroup3.pms.controllers.ParcelCardController"
+    stylesheets="@parcel-card.css"
+    styleClass="parcel"
+>
+    <HBox styleClass="topHBox">
+        <HBox styleClass="leftHBox">
+            <Label
+                wrapText="true"
+                fx:id="trackingID"
+                styleClass="parcelTrackingID"
+            />
+
+            <HBox styleClass="parcelStatusWrapper">
+                <Circle radius="8.0" fx:id="parcelStatusCircle" />
+                <Label fx:id="parcelStatus" />
+            </HBox>
+
+            <Label fx:id="parcelETA" styleClass="parcelETA" />
+        </HBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <HBox styleClass="rightHBox">
+            <VBox styleClass="expandIconWrapper" fx:id="expandIconWrapper">
+                <ImageView styleClass="expandIcon" fx:id="expandIcon">
+                    <Image
+                        url="@../../icons/chevron-left.png"
+                        requestedHeight="24"
+                        requestedWidth="24"
+                        preserveRatio="true"
+                        smooth="true"
+                    />
+                </ImageView>
+            </VBox>
+        </HBox>
+    </HBox>
+
+    <VBox
+        styleClass="collapsiblePane"
+        managed="false"
+        visible="false"
+        fx:id="collapsiblePane"
+    >
+        <GridPane vgap="10" hgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50" />
+                <ColumnConstraints percentWidth="50" />
+            </columnConstraints>
+
+            <VBox GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" styleClass="infoField">
+                <Label styleClass="fieldLabel" text="Description:" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="description" />
+            </VBox>
+
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="infoField">
+                <Label styleClass="fieldLabel" text="Weight (approximate):" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="weight" />
+            </VBox>
+
+            <VBox GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="infoField">
+                <Label styleClass="fieldLabel" text="Estimated Date Of Arrival:" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="etaDate" />
+            </VBox>
+
+            <VBox GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="infoField">
+                <Label styleClass="fieldLabel" text="From:" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="parcelSenderName" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="parcelSenderAddress" />
+            </VBox>
+
+            <VBox GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="infoField">
+                <Label styleClass="fieldLabel" text="To:" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="parcelReceiverName" />
+                <Label wrapText="true" styleClass="fieldValue" fx:id="parcelReceiverAddress" />
+            </VBox>
+        </GridPane>
+
+        <HBox styleClass="controls">
+            <Button fx:id="editButton" styleClass="customButton, editButton">Edit</Button>
+            <Button fx:id="deleteButton" styleClass="customButton, deleteButton">Delete</Button>
+        </HBox>
+    </VBox>
+</VBox>
